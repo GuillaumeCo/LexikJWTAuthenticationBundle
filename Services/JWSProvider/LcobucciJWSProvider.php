@@ -23,22 +23,22 @@ class LcobucciJWSProvider implements JWSProviderInterface
     /**
      * @var RawKeyLoader
      */
-    private $keyLoader;
+    protected $keyLoader;
 
     /**
      * @var Signer
      */
-    private $signer;
+    protected $signer;
 
     /**
      * @var int
      */
-    private $ttl;
+    protected $ttl;
 
     /**
      * @var int
      */
-    private $clockSkew;
+    protected $clockSkew;
 
     /**
      * @param RawKeyLoader $keyLoader
@@ -150,7 +150,7 @@ class LcobucciJWSProvider implements JWSProviderInterface
         );
     }
 
-    private function verify(Token $jwt)
+    protected function verify(Token $jwt)
     {
         if (!$jwt->validate(new ValidationData(time() + $this->clockSkew))) {
             return false;
